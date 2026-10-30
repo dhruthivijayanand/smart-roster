@@ -1,0 +1,2 @@
+# Optional CP-SAT backend. Without this, the application uses the exact HiGHS MILP model.
+ortools==9.15.6755

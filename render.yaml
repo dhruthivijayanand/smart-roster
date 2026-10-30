@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: datastraw-smart-roster
+    runtime: docker
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DEMO_SEED
+        value: "true"
+      - key: MANAGER_TOKEN
+        sync: false

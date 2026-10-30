@@ -75,7 +75,7 @@ Strengthen published adjacent-month consistency and richer partial-repair scope 
 - Approved leave, comp-off, unavailability and mandatory offs are hard. Preferred weekdays are soft; pending leave does not block scheduling.
 - Solver prioritises feasibility, then preserving allocations on repair, then primary ownership, then off preferences. No arbitrary weighted mixture. Fairness optimisation is not implemented yet.
 - Provisional adjacent weeks are scheduled for rest checks. Published neighbouring months are locked. This is not a promise that unapproved future rosters already exist.
-- The scoped repair currently fixes all other dates. If that scope is infeasible, it reports failure instead of quietly changing another week. Automatic scope expansion is a documented remaining enhancement.
+- Repair first fixes every other date. Proven same-day infeasibility triggers an explicitly labelled window of up to seven days on either side for rest-day swaps. The manager sees the expanded scope and complete diff before approval; dates outside that scope remain fixed.
 - Data edits conservatively stale all published rosters. Record deletion is soft deactivation with dependency checks.
 - CP-SAT uses a fixed seed, one worker and deterministic search limits. HiGHS uses a 30-second limit per lexicographic phase and checks integer incumbents before independent validation. Time-limited feasible output is not claimed optimal or guaranteed identical across runs. Local PyPI and GitHub wheel timeouts motivated the HiGHS fallback; this is a documented implementation change from the initial proposal. Install requirements-cpsat.txt to enable CP-SAT.
 - Schema creation uses SQLAlchemy create_all for this initial release; Alembic migrations from the original proposal are not yet implemented. Existing databases are not automatically migrated.
@@ -90,4 +90,3 @@ backend/app/schemas.py — validated inputs; database.py — persistence; domain
 - https://www.postgresql.org/docs/current/ddl-constraints.html
 
 AI assistance was used to develop this project. Review and understand the implementation before presenting personal technical ownership; no claim is made that the candidate independently authored every line.
-
