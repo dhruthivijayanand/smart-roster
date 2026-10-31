@@ -1,7 +1,7 @@
 """Relational persistence with explicit foreign keys and immutable roster snapshots."""
 import os
 from datetime import datetime, timezone
-from sqlalchemy import create_engine, event, Column, Integer, String, JSON, ForeignKey, UniqueConstraint, select
+from sqlalchemy import create_engine, event, Column, Integer, String, JSON, ForeignKey, UniqueConstraint, select, text
 from sqlalchemy.orm import declarative_base, sessionmaker
 from dotenv import load_dotenv
 load_dotenv()
@@ -89,6 +89,9 @@ def add_record(db, name, data, id=None):
     return row
 
 def init_db():
-    Base.metadata.create_all(engine)
-    with Session.begin() as db:
-        if not db.get(Meta,1): db.add(Meta(id=1,revision=1))
+    with engine.begin() as connection:
+        if connection.dialect.name == 'postgresql':
+            connection.execute(text('SELECT pg_advisory_xact_lock(731923)'))
+        Base.metadata.create_all(connection)
+        if not connection.execute(select(Meta.id).where(Meta.id == 1)).first():
+            connection.execute(Meta.__table__.insert().values(id=1,revision=1))

@@ -62,3 +62,23 @@ def test_relationship_validation_and_crud(client):
     id=response.json()['id'];assert client.put(f'/api/entities/processes/{id}',json={'name':'Returns handling','active':False}).status_code==200
     assert any(p['name']=='Returns handling' and not p['active'] for p in client.get('/api/data').json()['processes'])
     assert client.post('/api/rosters/generate',json={'month':'2026-99'}).status_code==422
+
+def test_seed_uses_generated_ids_and_is_idempotent():
+    from backend.app.seed import seed
+    from backend.app.database import snapshot
+    from sqlalchemy import event
+    engine=create_engine('sqlite://')
+    @event.listens_for(engine,'connect')
+    def fk(connection,_): connection.execute('PRAGMA foreign_keys=ON')
+    Base.metadata.create_all(engine); Factory=sessionmaker(engine)
+    with Factory.begin() as db:
+        add_record(db,'pods',{'name':'Existing pod','lead_id':None,'active':True},91)
+        add_record(db,'calendars',{'name':'Existing calendar','weekdays':[0],'holidays_off':False,'active':True},71)
+        add_record(db,'processes',{'name':'Existing process','active':True},51)
+        seed(db); data=snapshot(db)
+        assert len(data['employees'])==36
+        assert min(e['pod_id'] for e in data['employees'])>91
+        assert min(d['process_id'] for d in data['duties'])>51
+        assert len(data['assignments'])>400
+        seed(db); assert len(snapshot(db)['employees'])==36
+    engine.dispose()

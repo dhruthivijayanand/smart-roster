@@ -1,3 +1,7 @@
+> Live demo: https://smart-roster-dhruthi934-2771.vercel.app/
+> Repository: https://github.com/dhruthivijayanand/smart-roster
+> Candidate: Dhruthi Vijayanand · https://www.linkedin.com/in/dhruthi-v-877a65286/
+
 # DataStraw Smart Roster Management
 
 A constraint-based operations planner built for the DataStraw internship assessment.
@@ -82,7 +86,7 @@ Strengthen published adjacent-month consistency and richer partial-repair scope 
 - Optional multi-role approval, notifications, alternative plans and AI-generated explanations are not implemented.
 
 ## Project map
-backend/app/schemas.py — validated inputs; database.py — persistence; domain.py — calendar primitives; scheduler.py — CP-SAT; validation.py — independent checks; services.py — transactions and change control; main.py — API; seed.py — fictional data. frontend/src contains typed API helpers and focused React views. tests contains constraint and API integration tests.
+backend/app/schemas.py — validated inputs; database.py — persistence; domain.py — calendar primitives; scheduler.py — solver selection; milp_scheduler.py — tested HiGHS model; cp_sat_scheduler.py — optional CP-SAT; validation.py — independent checks; services.py — transactions and change control; main.py — API; seed.py — fictional data. frontend/src contains typed API helpers and focused React views. tests contains constraint and API integration tests.
 
 ## Technical references
 - https://developers.google.com/optimization/cp/cp_solver
