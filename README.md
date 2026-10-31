@@ -10,7 +10,7 @@ A constraint-based operations planner built for the DataStraw internship assessm
 **LinkedIn:** https://www.linkedin.com/in/dhruthi-v-877a65286/
 
 ## Current delivery status
-Publicly deployed on Vercel with Neon PostgreSQL. The backend suite has 24 passing tests; the public browser workflow covers generation/versioning, five views, absence preview/repair, publication and persistence. See docs/verification.md and docs/implementation-checklist.md for evidence and remaining limits.
+Publicly deployed on Vercel with Neon PostgreSQL. The backend suite has 24 passing tests; the public browser workflow covers generation/versioning, five views, absence preview/repair, publication and persistence. See docs/verification.md for evidence and remaining limits.
 
 ## Run locally
 Requires Python 3.10–3.12 and Node 20.19+ (Node 22 or 24 recommended).
@@ -85,7 +85,7 @@ Strengthen published adjacent-month consistency and richer partial-repair scope 
 - Data edits conservatively stale all published rosters. Record deletion is soft deactivation with dependency checks.
 - CP-SAT uses a fixed seed, one worker and deterministic search limits. HiGHS uses a 30-second limit per lexicographic phase and checks integer incumbents before independent validation. Time-limited feasible output is not claimed optimal or guaranteed identical across runs. Local PyPI and GitHub wheel timeouts motivated the HiGHS fallback; this is a documented implementation change from the initial proposal. Install requirements-cpsat.txt to enable CP-SAT.
 - Schema creation uses SQLAlchemy create_all for this initial release; Alembic migrations from the original proposal are not yet implemented. Existing databases are not automatically migrated.
-- Optional multi-role approval, notifications, alternative plans and AI-generated explanations are not implemented.
+- Optional multi-role approval, notifications, alternative plans and generated explanations are not implemented.
 
 ## Project map
 backend/app/schemas.py — validated inputs; database.py — persistence; domain.py — calendar primitives; scheduler.py — solver selection; milp_scheduler.py — tested HiGHS model; cp_sat_scheduler.py — optional CP-SAT; validation.py — independent checks; services.py — transactions and change control; main.py — API; seed.py — fictional data. frontend/src contains typed API helpers and focused React views. tests contains constraint and API integration tests.
