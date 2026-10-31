@@ -95,4 +95,3 @@ backend/app/schemas.py — validated inputs; database.py — persistence; domain
 - https://fastapi.tiangolo.com/deployment/docker/
 - https://www.postgresql.org/docs/current/ddl-constraints.html
 
-AI assistance was used to develop this project. Review and understand the implementation before presenting personal technical ownership; no claim is made that the candidate independently authored every line.
