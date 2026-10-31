@@ -34,6 +34,7 @@ export type Roster = {
   publishable: boolean;
   solver_status: string;
   solver_name: string;
+  generation_note?: string;
   repair_scope?: { dates: string[]; expanded: boolean; reason: string };
   diagnostic: boolean;
   summary: {
@@ -91,3 +92,4 @@ export async function api<T>(
   }
   return response.json();
 }
+

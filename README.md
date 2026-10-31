@@ -10,7 +10,7 @@ A constraint-based operations planner built for the DataStraw internship assessm
 **LinkedIn:** https://www.linkedin.com/in/dhruthi-v-877a65286/
 
 ## Current delivery status
-Implementation is under verification. See docs/verification.md for actual test and deployment evidence. Do not treat this source code as a verified public deployment until that report records a working URL.
+Publicly deployed on Vercel with Neon PostgreSQL. The backend suite has 24 passing tests; the public browser workflow covers generation/versioning, five views, absence preview/repair, publication and persistence. See docs/verification.md and docs/implementation-checklist.md for evidence and remaining limits.
 
 ## Run locally
 Requires Python 3.10–3.12 and Node 20.19+ (Node 22 or 24 recommended).
@@ -72,6 +72,8 @@ Measure model construction, solve time and query sizes first. Pre-index eligibil
 Strengthen published adjacent-month consistency and richer partial-repair scope expansion; add full PostgreSQL concurrency tests and versioned policy snapshots; improve infeasibility explanations using labelled constraints; implement capacity-normalised fairness and warm-start repair. Add authenticated roles, migration tooling, database-level generation locks and broader accessibility testing before real operational use.
 
 ## Assumptions and boundaries
+- Generating another version preserves a prior valid allocation after independent revalidation against current rules and published neighbouring months. The UI labels reuse explicitly. Invalid saved schedules are never reused; a new solve may return UNKNOWN if its time limit expires without a valid incumbent.
+
 - Planning timezone: Asia/Kolkata; dates are local dates, audit times UTC.
 - Fictional rest default: one day off per Monday–Sunday week and maximum six consecutive workdays. Configurable, not a DataStraw-supplied or legal rule.
 - Daily capacity default: eight units. Seeded single-owner duties use one unit each; multi-owner duties use two. Units describe divisible daily work, not simultaneous full-day presence. Configure exclusive intervals for simultaneous duty restrictions. Overnight shifts are rejected.

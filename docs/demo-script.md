@@ -6,9 +6,9 @@ Use November 2026 and fictional data. Confirm the live application works before 
 
 0:25–1:00 — Show Organisation & rules: one single-owner brand and a multi-owner brand, backup eligibility, daily workload limits and the three calendars. Explain that a process can override its brand's calendar. The holiday is fictional demo data.
 
-1:00–1:40 — Generate November. Wait for the actual solver result. Explain FEASIBLE versus OPTIMAL honestly. Show coverage and switch Company, Pod, Brand, Process and Employee. Point out approved leave and comp-offs.
+1:00–1:40 — Generate a November version. Explain the displayed result: existing valid allocations may be revalidated and preserved; a new solve is used when no valid saved schedule exists. Explain FEASIBLE versus OPTIMAL honestly. Show coverage and switch Company, Pod, Brand, Process and Employee. Point out approved leave and comp-offs.
 
-1:40–2:45 — Select a working day for a single-owner brand's employee. Preview leave with repair disabled. Show the affected duties and specific shortage findings. Enable repair; select a qualified candidate if appropriate; preview again and show the changed assignments. Approve the valid result. Show that other dates remain unchanged.
+1:40–2:45 — Select a working day for a single-owner brand's employee. Preview leave with repair disabled. Show the affected duties and specific shortage findings. Enable repair; select a qualified candidate if appropriate; preview again and show the changed assignments. Approve the valid result. Explain which dates remained fixed; if the repair scope expanded, show that scope honestly.
 
 2:45–3:15 — Select a multi-owner brand, inspect process-specific staffing and explain why two remaining employees do not necessarily cover the missing person's process. Demonstrate a second preview if time permits.
 

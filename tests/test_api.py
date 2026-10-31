@@ -82,3 +82,13 @@ def test_seed_uses_generated_ids_and_is_idempotent():
         assert len(data['assignments'])>400
         seed(db); assert len(snapshot(db)['employees'])==36
     engine.dispose()
+
+def test_generation_preserves_revalidated_allocations(client,monkeypatch):
+    first=client.post('/api/rosters/generate',json={'month':'2026-11'}).json()
+    def unexpected_solve(*args,**kwargs): raise AssertionError('Valid allocations should be retained')
+    monkeypatch.setattr(services,'solve',unexpected_solve)
+    second=client.post('/api/rosters/generate',json={'month':'2026-11'}).json()
+    assert second['id']!=first['id']
+    assert second['allocations']==first['allocations']
+    assert second['reused_from']==first['id']
+    assert second['publishable']

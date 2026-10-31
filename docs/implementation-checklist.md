@@ -5,7 +5,7 @@ This supersedes the status column in the original architecture proposal. Status 
 | ID | Requirement | Status | Evidence / limitation |
 |---|---|---|---|
 | 1 | Employees, pods, leads, brands, processes | Verified | 36 fictional employees, three pods, lead validation and management forms |
-| 2 | 80% single-owner brands | Implemented | Seed creates 20 single-owner and five 2–3-owner brands; backups counted separately |
+| 2 | 80% single-owner brands | Verified | Live API: 20 single-owner, three two-owner and two three-owner brands; backups counted separately |
 | 3 | Distinct/shared processes and minimum >1 | Tested | Unit fixtures; seed includes a two-person requirement |
 | 4 | Cross-brand/process assignment editing | Tested | Eligibility CRUD, effective dates and global capacity tests |
 | 5 | Three calendar types and process overrides | Tested | Parameterised calendar fixtures and management forms |
@@ -29,10 +29,10 @@ This supersedes the status column in the original architecture proposal. Status 
 | 23 | Actionable conflict details | Tested | Dates, duties, counts, reasons, severity and remedies |
 | 24 | Dashboard, filters, responsive UI | Verified | Five public views and 390px layout check |
 | 25 | Approval, audit and preservation | Verified | Public preview/apply/publish/reload; stale revision API tests |
-| 26 | Unit/integration/end-to-end tests | Verified | 23 backend tests; two public browser tests, 1.4 minutes |
+| 26 | Unit/integration/end-to-end tests | Verified | 24 backend tests; two public browser tests, 1.4 minutes |
 | 27 | Public persistent deployment | Verified | Vercel with Neon PostgreSQL; public browser reload after publication |
-| 28 | Repository and setup documentation | In progress | Source uploaded; final production fix and evidence being synchronized |
-| 29 | Video, approach note and LinkedIn | In progress | Approach note and profile supplied; live captioned video being recorded |
+| 28 | Repository and setup documentation | Implemented | Source, setup instructions, environment example and evidence included; final clean-checkout dependency installation was not repeated |
+| 29 | Video, approach note and LinkedIn | In progress | Candidate will record and share their own 3–5 minute walkthrough. Approach note, script and LinkedIn are ready. |
 | 30 | Eight README answers | Implemented | README answers each assessment question |
 | 31 | Fairness, backups, export | Implemented | Backups and CSV work; fairness optimisation deferred |
 | 32 | Alternatives, notifications, roles, AI explanations | Not started | Explicitly deferred optional enhancements |

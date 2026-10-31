@@ -107,3 +107,4 @@ def solve(data,month,previous=None,affected_dates=None,force=None,boundary=None)
         'boundary_note':'Adjacent weeks are explicitly planned as provisional context; published neighbouring months are locked when available.',
         'solver_settings':{'backend':'HiGHS','time_limit_per_phase':30,'relative_gap':0},
         'summary':{'hard':len(hard),'soft':len(findings)-len(hard),'required_slots':sum(v for (d,j),v in demands.items() if d in visible),'covered_slots':sum(a['date'] in visible for a in allocations)}}
+

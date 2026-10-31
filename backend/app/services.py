@@ -85,7 +85,23 @@ def boundaries(db,month,exclude=None):
 
 def generate(db,month):
     data=snapshot(db); rev=current_revision(db)
-    payload=solve(data,month,boundary=boundaries(db,month))
+    boundary=boundaries(db,month)
+    payload=None
+    # A new version need not discard a still-valid allocation. Revalidate against
+    # current inputs and published neighbours before preserving it.
+    for prior in db.scalars(select(Roster).where(Roster.month==month).order_by(Roster.id.desc()).limit(10)):
+        candidate=enrich(data,prior.payload)
+        keys={(a['employee_id'],a['duty_id'],a['date']) for a in candidate['allocations']}
+        aligned=all(day not in candidate['horizon'] or values=={k for k in keys if k[2]==day} for day,values in boundary.items())
+        if candidate['publishable'] and aligned:
+            payload=candidate
+            payload['solver_status']='FEASIBLE'
+            payload['objective_values']=[]
+            payload['generation_note']=f'Existing allocations from version {prior.id} were independently revalidated against current inputs and preserved. No new optimisation was needed.'
+            payload['reused_from']=prior.id
+            break
+    if payload is None:
+        payload=solve(data,month,boundary=boundary)
     payload['input_snapshot']=data
     if current_revision(db)!=rev: fail('Inputs changed; regenerate',409)
     r=Roster(month=month,input_revision=rev,revision=1,status='draft',payload=payload,created_at=now())

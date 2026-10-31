@@ -75,7 +75,7 @@ function App() {
     await run("Solving coverage, capacity and rest…", async () => {
       setRoster(await api<Roster>("/rosters/generate", { month }));
       await refreshVersions();
-      setToast("Roster generated. Review coverage before publishing.");
+      setToast("Roster version ready. Review coverage before publishing.");
     });
   }
   async function changed() {
@@ -400,7 +400,7 @@ function App() {
                         roster={roster}
                         onEdit={(employee, date) => setEdit({ employee, date })}
                       />
-                      <p className="footnote">{roster.boundary_note}</p>
+                      <p className="footnote">{roster.generation_note}</p><p className="footnote">{roster.boundary_note}</p>
                     </>
                   ) : (
                     <div className="empty hero-empty">
@@ -563,3 +563,4 @@ function App() {
   );
 }
 createRoot(document.getElementById("root")!).render(<App />);
+
